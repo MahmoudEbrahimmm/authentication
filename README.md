@@ -1,66 +1,105 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Authentication Public API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a fully customized authentication system built from scratch using Laravel, without relying on any external authentication libraries.
+It provides complete control over user registration, login, email verification, password reset, and account confirmation — making it a flexible and educational foundation for secure web applications.
 
-## About Laravel
+Project Overview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The Authentication Public API offers a secure and efficient way to manage user accounts.
+It is designed with a focus on simplicity, security, and extendability, allowing developers to easily integrate it into any Laravel-based application.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The system includes all essential authentication operations with full API endpoints and JSON responses.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Key Features
 
-## Learning Laravel
+User Registration
+Allows new users to sign up with name, email, and password.
+The system automatically sends a verification email upon registration.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Email Verification
+Users must verify their email address before accessing protected routes.
+A unique token is generated and sent to the user’s email for verification.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Login System
+Authenticates users using email and password.
+Returns a secure API token (or session) upon successful login.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Password Reset
+Includes a secure process for resetting a forgotten password.
+Users receive a password reset link by email and can create a new password safely.
 
-## Laravel Sponsors
+Account Confirmation
+Confirms the user’s account after successful verification.
+Unverified users are restricted from accessing protected areas.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Logout Functionality
+Securely invalidates the user session or token, ensuring complete logout.
 
-### Premium Partners
+Profile Management (Optional)
+Allows users to update their name, email, or password after authentication.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Security Highlights
 
-## Contributing
+Tokens are securely generated and validated.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Email verification prevents unauthorized access.
 
-## Code of Conduct
+Passwords are encrypted using Laravel’s hashing system.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Access to sensitive routes is protected using middleware.
 
-## Security Vulnerabilities
+No external authentication packages — 100% custom-built logic.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+API Endpoints
 
-## License
+POST /api/register – Create a new account and send a verification email.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+GET /api/verify/{token} – Verify user’s email address.
+
+POST /api/login – Authenticate user credentials.
+
+POST /api/logout – Log out the user and revoke access token.
+
+POST /api/password/forgot – Request password reset link.
+
+POST /api/password/reset – Reset password using provided token.
+
+GET /api/user – Get the authenticated user’s profile (protected route).
+
+Response Format
+
+All API responses return in a clear JSON structure containing:
+
+Message (operation description)
+
+Status code (success or error)
+
+Data or null
+
+This makes it easy to handle responses in frontend or mobile applications.
+
+Technologies Used
+
+Laravel Framework
+
+PHP
+
+MySQL Database
+
+RESTful API Design
+
+Mailer for sending verification and reset emails
+
+Middleware for route protection
+
+Validation and Encryption for user security
+
+Purpose
+
+The Authentication Public API is ideal for developers who want to understand authentication logic deeply and build secure systems without depending on pre-made Laravel authentication packages.
+It can serve as the foundation for any user-based platform such as dashboards, e-commerce systems, or learning platforms.
+
+Developer
+
+Developed by Mahmoud Ebrahim
+Backend Developer specializing in Laravel, RESTful APIs, and secure authentication systems.
